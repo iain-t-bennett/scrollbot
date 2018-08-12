@@ -13,11 +13,10 @@ sphd.rotate(180)
 # check it works - light every pixel
 
 for x in range(17):
-    sphd.clear()
     for y in range(7):
         sphd.set_pixel(x, y, 0.25)
 sphd.show()
-time.sleep(0.1)        
+time.sleep(0.5)
 sphd.clear()
 sphd.show()
 
@@ -26,11 +25,14 @@ link = "https://raw.githubusercontent.com/iain-t-bennett/scrollbot/master/exampl
 f = requests.get(link)
 
 msg = f.text
+# add blank space so no immediate repeat
+msg = msg + '         '
 
 sphd.write_string(msg)
 sphd.set_brightness(0.25)
 
-for x in range(len(msg)*3+17):
+# assume 5 pixels per char then add 17 for width of display 
+for x in range(len(msg)*5+17):
     sphd.show()
     sphd.scroll(1)
     time.sleep(0.05)
