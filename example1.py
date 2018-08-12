@@ -20,7 +20,7 @@ for x in range(17):
 msg = 'This is a test'
 sphd.write_string(msg)
 
-for x in range(len(msg)):
+for x in range(len(msg)*10):
     sphd.show()
     sphd.scroll(1)
     time.sleep(0.05)
