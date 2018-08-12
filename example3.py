@@ -31,8 +31,8 @@ msg = msg + '         '
 sphd.write_string(msg)
 sphd.set_brightness(0.25)
 
-# assume 5 pixels per char then add 17 for width of display 
-for x in range(len(msg)*5+17):
+# assume 4 pixels per char then add 17 for width of display 
+for x in range(len(msg)*4+17):
     sphd.show()
     sphd.scroll(1)
     time.sleep(0.05)
