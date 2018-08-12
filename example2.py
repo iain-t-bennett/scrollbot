@@ -5,6 +5,9 @@ import signal
 import scrollphathd
 from scrollphathd.fonts import font5x7
 
+# as upside down in scrollbot
+scrollphathd.rotate(180) 
+
 str_len = 0
 scroll_x = 0
 
