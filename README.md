@@ -1,4 +1,5 @@
 # scrollbot
+Web connected led display
 
 ## Preperation steps
 * Download image from https://www.raspberrypi.org/downloads/raspbian/ and extract the zip file to get a .img file.
