@@ -51,6 +51,7 @@ while True:
         # avoid immediate loop
         msg = msg + "     "
     # set message
+    sphd.clear()
     str_len = sphd.write_string(msg)
     sphd.set_brightness(0.25)
 
