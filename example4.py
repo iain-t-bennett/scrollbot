@@ -37,14 +37,14 @@ while True:
         w.temp = w.get_temperature('celsius')
 
         #  build message to scroll
-        msg = str((w.temp['temp_min'] + w.temp['temp_max'])/2)
+        msg = "Temp" + str(((w.temp['temp_min'] + w.temp['temp_max'])/2)) + "c"
         # forecast
         fc = owm.three_hours_forecast('Basel,CH')
 
         if fc.will_have_rain():
             w.rain = fc.when_rain()[0]
             time.rain = w.rain.get_reference_time(timeformat='date')
-            msg = msg + " rain at " + str(time.rain.hour) + ":00"
+            msg = msg + " rain at " + str(time.rain.hour) + "h"
         else:
             msg = msg + " No rain"
 
