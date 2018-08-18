@@ -37,20 +37,21 @@ while True:
         w.temp = w.get_temperature('celsius')
 
         #  build message to scroll
-        msg = "Temp: " + str((w.temp['temp_min'] + w.temp['temp_max'])/2)
+        msg = str((w.temp['temp_min'] + w.temp['temp_max'])/2)
         # forecast
         fc = owm.three_hours_forecast('Basel,CH')
 
         if fc.will_have_rain():
             w.rain = fc.when_rain()[0]
             time.rain = w.rain.get_reference_time(timeformat='date')
-            msg = msg + " Rain at: " + str(time.rain.hour) + ":" + str(time.rain.minute)
+            msg = msg + " Rain at " + str(time.rain.hour) + ":00"
         else:
             msg = msg + " No rain"
-    str_len = sphd.write_string(msg)
+    # set message
+    str_len = sphd.write_string(msg) + 5
     sphd.set_brightness(0.25)
 
-
+    # do the scrolling
     sphd.scroll_to(scroll_x, 0)
     sphd.show()
     time.sleep(0.05)
