@@ -44,11 +44,13 @@ while True:
         if fc.will_have_rain():
             w.rain = fc.when_rain()[0]
             time.rain = w.rain.get_reference_time(timeformat='date')
-            msg = msg + " Rain at " + str(time.rain.hour) + ":00"
+            msg = msg + " rain at " + str(time.rain.hour) + ":00"
         else:
             msg = msg + " No rain"
+
+        # avoid immediate loop
+        msg = msg + "     "
     # set message
-    msg = msg + "     "
     str_len = sphd.write_string(msg)
     sphd.set_brightness(0.25)
 
