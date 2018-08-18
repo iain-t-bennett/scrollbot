@@ -48,7 +48,8 @@ while True:
         else:
             msg = msg + " No rain"
     # set message
-    str_len = sphd.write_string(msg) + 5
+    msg = msg + "     "
+    str_len = sphd.write_string(msg)
     sphd.set_brightness(0.25)
 
     # do the scrolling
