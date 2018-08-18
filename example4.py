@@ -3,10 +3,12 @@
 # https://raw.githubusercontent.com/iain-t-bennett/scrollbot/master/example3.msg
 # and show on scrollbot
 
-#import scrollphathd as sphd
+import scrollphathd as sphd
 import time
 import pyowm
 
+# contents of auth.py
+# owm_api_key="api key from openweathermap.com"
 from auth import owm_api_key
 
 print(owm_api_key)
@@ -16,34 +18,45 @@ print(owm_api_key)
 owm = pyowm.OWM(owm_api_key)
 
 # as upside down in scrollbot
-#sphd.rotate(180) 
+sphd.rotate(180)
+
+str_len = 0
+time_since_update = 20*60*10
+scroll_x = 0
+
+while True:
+    # read data from owm website
+    # get weather - only check every 5 minutes
+    if time_since_update > 20*60*5:
+        # 5 minutes since checked - get an update
+        time_since_update = 0
+        observation = owm.weather_at_place('Basel,CH')
+        # current weather
+        w = observation.get_weather()
+        #  extract temperature
+        w.temp = w.get_temperature('celsius')
+
+        #  build message to scroll
+        msg = "Temp: " + str((w.temp['temp_min'] + w.temp['temp_max'])/2)
+        # forecast
+        fc = owm.three_hours_forecast('Basel,CH')
+
+        if fc.will_have_rain():
+            w.rain = fc.when_rain()[0]
+            time.rain = w.rain.get_reference_time(timeformat='date')
+            msg = msg + " Rain at: " + str(time.rain.hour) + ":" + str(time.rain.minute)
+        else:
+            msg = msg + " No rain"
+    str_len = sphd.write_string(msg)
+    sphd.set_brightness(0.25)
 
 
-# read data from owm website
-# get weather
+    sphd.scroll_to(scroll_x, 0)
+    sphd.show()
+    time.sleep(0.05)
+    scroll_x += 1
+    time_since_update += 1
+    if scroll_x >= str_len:
+        scroll_x = 0
 
-observation = owm.weather_at_place('Basel,CH')
-
-w = observation.get_weather()
-
-w.temp = w.get_temperature('celsius')
-
-msg = "Temperature: " + str(w.temp['temp_min']) + " - " + str(w.temp['temp_max']) + " c"
-
-print()
-print(msg)
-
-# add blank space so no immediate repeat
-msg = msg + '         '
-
-# sphd.write_string(msg)
-# sphd.set_brightness(0.25)
-
-# assume 4 pixels per char then add 17 for width of display 
-# for x in range(len(msg)*4+17):
-#    sphd.show()
-#    sphd.scroll(1)
-#    time.sleep(0.05)
-
-print(msg)
 # end of script
