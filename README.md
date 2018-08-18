@@ -41,3 +41,8 @@ cd scrollbot
 git pull
 python example1.py
 ```
+
+## For owm
+* install [pywom](https://pyowm.readthedocs.io/en/latest/usage-examples.html) `sudo pip install pyowm`
+* get api key for [owm](https://openweathermap.org/appid)
+
