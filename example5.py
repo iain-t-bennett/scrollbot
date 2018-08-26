@@ -50,7 +50,7 @@ while True:
     sphd.clear()
     sphd.write_string(msg)
     sphd.set_brightness(0.25)
-    sphd.set_pixel(14, 1, 0.25)
+    sphd.set_pixel(17, 1, 0.5)
     sphd.show()
     time.sleep(0.1)
 
