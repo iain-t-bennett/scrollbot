@@ -11,7 +11,7 @@ import pyowm
 # owm_api_key="api key from openweathermap.com"
 from auth import owm_api_key
 
-print(owm_api_key)
+# print(owm_api_key)
 
 # create weather object
 
@@ -20,15 +20,12 @@ owm = pyowm.OWM(owm_api_key)
 # as upside down in scrollbot
 sphd.rotate(180)
 
-str_len = 0
-time_since_update = 20*60*10
-x = 1
-y = 1
+time_since_update = 60 * 5 + 1
 
 while True:
     # read data from owm website
     # get weather - only check every 5 minutes
-    if time_since_update > 20*60*5:
+    if time_since_update > 60 * 5:
         # 5 minutes since checked - get an update
         time_since_update = 0
         observation = owm.weather_at_place('Basel,CH')
@@ -44,17 +41,31 @@ while True:
     # set message and flash to show awake
     sphd.clear()
     sphd.write_string(msg)
+    sphd.set_pixel(15, 0, 0.5)
     sphd.set_brightness(0.25)
     sphd.show()
-    time.sleep(0.1)
+    time.sleep(0.25)
 
     sphd.clear()
     sphd.write_string(msg)
     sphd.set_brightness(0.25)
-    
     sphd.set_pixel(16, 0, 0.5)
     sphd.show()
-    time.sleep(0.1)
+    time.sleep(0.25)
+
+    sphd.clear()
+    sphd.write_string(msg)
+    sphd.set_brightness(0.25)
+    sphd.set_pixel(16, 1, 0.5)
+    sphd.show()
+    time.sleep(0.25)
+
+    sphd.clear()
+    sphd.write_string(msg)
+    sphd.set_brightness(0.25)
+    sphd.set_pixel(15, 1, 0.5)
+    sphd.show()
+    time.sleep(0.25)
 
     time_since_update += 1
 
