@@ -45,7 +45,7 @@ python example1.py
 ## Running a script on boot
 ```
 crontab -e
-@reboot python /home/pi/scrollbot/example5.py
+@reboot python /home/pi/scrollbot/example5.py &
 ```
 
 ## For owm
