@@ -42,6 +42,12 @@ git pull
 python example1.py
 ```
 
+## Running a script on boot
+```
+crontab -e
+@reboot python /home/pi/scrollbot/example5.py
+```
+
 ## For owm
 * install [pywom](https://pyowm.readthedocs.io/en/latest/usage-examples.html) `sudo pip install pyowm`
 * get api key for [owm](https://openweathermap.org/appid)
