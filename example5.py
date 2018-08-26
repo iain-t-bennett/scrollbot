@@ -37,7 +37,7 @@ while True:
         w.temp = w.get_temperature('celsius')
 
         #  build message to scroll
-        msg = str(((w.temp['temp_min'] + w.temp['temp_max'])/2))
+        msg = str(round((w.temp['temp_min'] + w.temp['temp_max'])/2, 0))
         # forecast
 
     # set message and flash to show awake
