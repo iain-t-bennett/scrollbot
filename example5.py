@@ -22,7 +22,8 @@ sphd.rotate(180)
 
 str_len = 0
 time_since_update = 20*60*10
-scroll_x = 0
+x = 1
+y = 1
 
 while True:
     # read data from owm website
@@ -37,8 +38,8 @@ while True:
         w.temp = w.get_temperature('celsius')
 
         #  build message to scroll
-        msg = str(round((w.temp['temp_min'] + w.temp['temp_max'])/2, 0))
-        # forecast
+        msg = '{0:g}'.format(round((w.temp['temp_min'] + w.temp['temp_max'])/2, 0))
+
 
     # set message and flash to show awake
     sphd.clear()
@@ -50,7 +51,8 @@ while True:
     sphd.clear()
     sphd.write_string(msg)
     sphd.set_brightness(0.25)
-    sphd.set_pixel(17, 1, 0.5)
+    
+    sphd.set_pixel(16, 0, 0.5)
     sphd.show()
     time.sleep(0.1)
 
