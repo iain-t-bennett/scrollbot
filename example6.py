@@ -32,10 +32,10 @@ class MyStreamer(TwythonStreamer):
             username = data['user']['screen_name']
             tweet = data['text']
             # print("@{}: {}".format(username, tweet))
-            msg = "@{}: {}".format(username, tweet)
             # trim special characters out
-            msg = re.sub('[^A-Za-z0-9 /:@]+', '', msg)
-            msg = msg + '         '
+            un = re.sub('[^A-Za-z0-9 /:@]+', '', username)
+            twt = re.sub('[^A-Za-z0-9 /:@]+', '', tweet)
+            msg = "@{}: {}".format(un, twt)
             sphd.write_string(msg)
             sphd.set_brightness(0.01)
 
