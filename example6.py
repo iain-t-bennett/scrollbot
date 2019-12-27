@@ -2,7 +2,7 @@
 # read data from twitter
 # and show on scrollbot
 
-#import scrollphathd as sphd
+import scrollphathd as sphd
 import time
 import requests
 from twython import TwythonStreamer
