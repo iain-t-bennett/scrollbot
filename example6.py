@@ -4,6 +4,7 @@
 
 import scrollphathd as sphd
 import time
+import re
 import requests
 from twython import TwythonStreamer
 from auth import (
