@@ -30,10 +30,11 @@ class MyStreamer(TwythonStreamer):
         if 'text' in data:
             username = data['user']['screen_name']
             tweet = data['text']
-            print("@{}: {}".format(username, tweet))
+            # print("@{}: {}".format(username, tweet))
             msg = "@{}: {}".format(username, tweet)
+            msg = msg + '         '
             sphd.write_string(msg)
-            sphd.set_brightness(0.25)
+            sphd.set_brightness(0.01)
 
             # assume 4 pixels per char then add 17 for width of display
             for x in range(len(msg) * 4 + 17):
@@ -47,4 +48,4 @@ stream = MyStreamer(
     twitter_token,
     twitter_token_secret
 )
-stream.statuses.filter(track='raspberry pi')
+stream.statuses.filter(track='merry christmas')
